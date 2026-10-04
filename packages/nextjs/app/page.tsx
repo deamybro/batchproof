@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   ShieldCheckIcon,
   SearchIcon,
@@ -26,10 +25,8 @@ import {
 import { VerificationResult } from "@/lib/types";
 
 export default function HomePage() {
-  const router = useRouter();
   const [batchInput, setBatchInput] = useState("");
   const [selectedBatchCode, setSelectedBatchCode] = useState<string>("AMOX-2025-001");
-  const [activeTab, setActiveTab] = useState<"AMOX-2025-001" | "PARA-2023-088" | "METF-2024-X09">("AMOX-2025-001");
   
   // Live Sandbox verification state
   const [sandboxResult, setSandboxResult] = useState<VerificationResult | null>(null);
@@ -219,7 +216,6 @@ export default function HomePage() {
                 type="button"
                 onClick={() => {
                   setSelectedBatchCode(sample.code);
-                  setActiveTab(sample.code);
                 }}
                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono border transition-all ${
                   selectedBatchCode === sample.code
@@ -315,7 +311,13 @@ export default function HomePage() {
               <p className="text-base font-semibold text-white">Batch Query Notice</p>
               <p className="text-xs text-slate-400 max-w-md mx-auto">{sandboxError}</p>
             </div>
-          ) : sandboxResult ? (
+          ) : sandboxResult && !sandboxResult.found ? (
+            <div className="py-12 text-center space-y-3">
+              <AlertTriangleIcon className="w-10 h-10 text-amber-400 mx-auto" />
+              <p className="text-base font-semibold text-white">Batch Not Found</p>
+              <p className="text-xs text-slate-400 max-w-md mx-auto">{sandboxResult.statusReason}</p>
+            </div>
+          ) : sandboxResult && sandboxResult.batch ? (
             <div className="space-y-6">
               {/* Header Status Row */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
@@ -436,7 +438,7 @@ export default function HomePage() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => copyHash(sandboxResult.calculatedHash)}
+                  onClick={() => copyHash(sandboxResult.calculatedHash || "")}
                   className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 flex items-center gap-1.5 transition-colors shrink-0"
                 >
                   {copiedHash ? (
