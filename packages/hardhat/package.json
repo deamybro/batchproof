@@ -1,0 +1,17 @@
+{
+  "name": "@batchproof/hardhat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hardhat smart contracts and tests for BatchProof on Hedera EVM",
+  "scripts": {
+    "compile": "hardhat compile",
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.18",
+    "typescript": "^5.7.3"
+  }
+}

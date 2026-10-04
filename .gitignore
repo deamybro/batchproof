@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Next.js
+.next/
+out/
+build
+dist
+
+# Hardhat
+packages/hardhat/cache
+packages/hardhat/artifacts
+packages/hardhat/typechain
+packages/hardhat/typechain-types
+
+# Misc
+.DS_Store
+*.pem
+
+# Environment variables
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

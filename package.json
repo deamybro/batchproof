@@ -1,0 +1,32 @@
+{
+  "name": "batchproof",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BatchProof - Medicine-batch verification scaffold on Hedera Consensus Service",
+  "workspaces": [
+    "packages/hardhat",
+    "packages/nextjs"
+  ],
+  "scripts": {
+    "dev": "npm --workspace=packages/nextjs run dev",
+    "build": "npm --workspace=packages/hardhat run build && npm --workspace=packages/nextjs run build",
+    "lint": "npm --workspace=packages/nextjs run lint",
+    "test": "npm --workspace=packages/nextjs run test && npm --workspace=packages/hardhat run test",
+    "test:nextjs": "npm --workspace=packages/nextjs run test",
+    "test:hardhat": "npm --workspace=packages/hardhat run test",
+    "hedera:setup": "node scripts/hedera-setup.mjs"
+  },
+  "keywords": [
+    "hedera",
+    "hcs",
+    "scaffold-hbar",
+    "batchproof",
+    "supply-chain",
+    "medicine-verification"
+  ],
+  "author": "BatchProof Contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.18.3"
+  }
+}
