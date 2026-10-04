@@ -9,7 +9,9 @@
   ],
   "scripts": {
     "dev": "npm --workspace=packages/nextjs run dev",
-    "build": "npm --workspace=packages/hardhat run build && npm --workspace=packages/nextjs run build",
+    "build": "npm --workspace=packages/nextjs run build",
+    "start": "npm --workspace=packages/nextjs run start",
+    "build:all": "npm --workspace=packages/hardhat run build && npm --workspace=packages/nextjs run build",
     "lint": "npm --workspace=packages/nextjs run lint",
     "test": "npm --workspace=packages/nextjs run test && npm --workspace=packages/hardhat run test",
     "test:nextjs": "npm --workspace=packages/nextjs run test",
